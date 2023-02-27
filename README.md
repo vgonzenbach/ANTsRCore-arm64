@@ -15,7 +15,7 @@ Then, to build the image and save a log, run the following command (note that th
 
 ```sh
 # for clean build logs may need to clear the cache (!!) with: docker builder prune -a
-docker build -t ANTsRCore-arm64-debug . &> full_build.log
+docker build -t antsrcore-arm64-debug . &> full_build.log
 ```
 
 This attempts to install ANTs, R, ITKR, and ANTsRCore (in that order) inside the docker image.
@@ -26,13 +26,13 @@ To build an intermediary image with only ANTs, run:
 
 ```sh
 # only installs ANTs
-head -n15 Dockerfile | docker build -t ANTs-arm64-debug - &> ants_build.log
+head -n15 Dockerfile | docker build -t ants-arm64-debug - &> ants_build.log
 ```
 
 Then you can test the ANTs installation: 
 ```sh
 # this should output `/opt/ants-2.4.3/antsRegistration` when the installation is successful
-docker run --rm ANTs-arm64-debug which antsRegistration
+docker run --rm ants-arm64-debug which antsRegistration
 ```
 
 Note that an image is produced but the ANTs installation is not successful.
@@ -42,14 +42,14 @@ Note that an image is produced but the ANTs installation is not successful.
 To build up to ITKR (this is successful):
 
 ```sh
-head -n81 Dockerfile.antsrcore | docker build -t ITKR-arm64-debug - &> itkr_build.log
+head -n81 Dockerfile | docker build -t itkr-arm64-debug - &> itkr_build.log
 ```
 
 And to test the ITKR installation, run:
 
 ```sh
 # this should output `/usr/local/lib/R/library/ITKR` when the installation is successful
-docker run --rm ITKR-arm64-debug Rscript -e "system.file(package='ITKR')"
+docker run --rm itkr-arm64-debug Rscript -e "system.file(package='ITKR')"
 ```
 
 [TODO: enter url for built docker image]
