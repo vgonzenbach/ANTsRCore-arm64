@@ -26,7 +26,7 @@ To build an intermediary image with only ANTs, run:
 
 ```sh
 # only installs ANTs
-head -n15 Dockerfile | docker build -t ants-arm64-debug - &> ants_build.log
+head -n15 Dockerfile | docker build -t ants-arm64-debug -
 ```
 
 Then you can test the ANTs installation: 
@@ -42,7 +42,7 @@ Note that an image is produced but the ANTs installation is not successful.
 To build up to ITKR (this is successful):
 
 ```sh
-head -n81 Dockerfile | docker build -t itkr-arm64-debug - &> itkr_build.log
+head -n81 Dockerfile | docker build -t itkr-arm64-debug -
 ```
 
 And to test the ITKR installation, run:
