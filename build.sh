@@ -8,6 +8,6 @@
 
 # This line will delete your image cache to get fresh logs (be careful):
 # docker system prune -a -f
-docker build -t ANTsRCore-arm64-debug . &> $(date +"%Y-%m-%d_%T")_build.log
+docker build -t antsrcore-arm64-debug . &> $(date +"%Y-%m-%d_%T")_build.log
 
        

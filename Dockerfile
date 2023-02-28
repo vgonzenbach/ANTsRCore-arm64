@@ -76,7 +76,10 @@ RUN wget https://cran.rstudio.com/src/base/R-${R_VERSION_MAJOR}/R-${R_VERSION_MA
              && cd cmake-$version.$build/ \
              && ./bootstrap \
              && make -j$(nproc) \
-             && sudo make install \
+             && make install \
              && alias cmake=$(which cmake) 
+
+RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /usr/local/lib/R/etc/Rprofile.site \
+            && Rscript -e "install.packages(c('Rcpp', 'remotes'))"
 RUN git clone https://github.com/stnava/ITKR.git && R CMD INSTALL ITKR && rm -rf ITKR 
-RUN git clone https://github.com/ANTsX/ANTsRCore.git && R CMD INSTALL ANTsRCore && rm -rf ANTsRCore 
+RUN Rscript -e "remotes::install_github('stnava/ANTsRCore', dependencies=TRUE)"
